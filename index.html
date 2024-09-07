@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Unique gradient background */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #resume-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #resume-content {
+      border: 2px solid #ddd;
+      padding: 30px;
+      width: 600px;
+      margin: 20px;
+      background-color: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Box shadow for a unique effect */
+      border-radius: 10px;
+      animation: fadeIn 1s ease-in-out; /* Simple fade-in animation */
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #333;
+      animation: bounce 1s ease infinite; /* Bouncing title animation */
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease; /* Smooth hover effect */
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Fade-in animation for the resume content */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Bounce animation for the title */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="resume-container">
+    <h1>Resume Generator</h1>
+    
+    <!-- Resume content -->
+    <div id="resume-content">
+      <h2>Farida Bano</h2>
+      <p><strong>Email:</strong> Farida123@gmail.com</p>
+      <h3>Education</h3>
+      <p>Bachelor of Science in Computer Science</p>
+      <h3>Skills</h3>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>TypeScript</li>
+        <li>Tailwind CSS</li>
+      </ul>
+    </div>
+    
+    <!-- Buttons for sharing and downloading the resume -->
+    <button onclick="shareResume()">Share Resume</button>
+    <button onclick="downloadPDF()">Download as PDF</button>
+  </div>
+
+  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  
+  <script>
+    // Function to share the resume link
+    function shareResume() {
+      const username = "farida";  // Example username
+      const resumeLink = `https://${username}.vercel.app/resume`;
+      
+      navigator.clipboard.writeText(resumeLink).then(() => {
+        alert(`Resume link copied to clipboard: ${resumeLink}`);
+      });
+    }
+
+    // Function to download the resume as PDF
+    function downloadPDF() {
+      const element = document.getElementById("resume-content");
+      html2pdf().from(element).save('Resume.pdf');
+    }
+  </script>
+</body>
+</html>
